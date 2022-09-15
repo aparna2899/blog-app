@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Main from './Main';
+import Tag from './Tag';
 
 class Hero extends React.Component {
   constructor(props) {
@@ -19,6 +20,11 @@ class Hero extends React.Component {
     if (!data) {
       return <p>Loading</p>;
     }
+    data.splice(16, 1);
+    let tags = [];
+    for (let i = 0; i < data.length; i++) {
+      if (!tags.includes(...data[i].tagList)) tags.push(...data[i].tagList);
+    }
     return (
       <>
         <div className="bg-green text-white text-center py-12 shadow-[inset_0_-5px_8px_4px_rgba(0,0,0,0.2)]">
@@ -29,46 +35,10 @@ class Hero extends React.Component {
             A place to share your knowledge.
           </p>
         </div>
-        <main className="container mx-auto my-12 px-24">
-          <p className="text-grey mb-2">Global Feed</p>
-          <hr />
-          <ul>
-            {data.map((article) => (
-              <li key={article.slug} className="py-4 border-b">
-                <div className="flex mb-5">
-                  <div className="w-14 h-14 mr-3">
-                    <img
-                      src={article.author.image}
-                      alt=""
-                      className="w-full h-full rounded-full"
-                    />
-                  </div>
-                  <div>
-                    <strong className="block text-green font-medium">
-                      {article.author.username}
-                    </strong>
-                    <span className="text-sm text-grey font-light">
-                      {Date(article.createdAt).slice(0, 15)}
-                    </span>
-                  </div>
-                </div>
-
-                <h2 className="text-2xl font-bold font-Roboto mb-2">
-                  {article.title}
-                </h2>
-                <p className="text-grey font-light mb-6">
-                  {article.description}
-                </p>
-                <Link
-                  to="/articles/:slug"
-                  className="text-sm text-grey font-light"
-                >
-                  Read more...
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </main>
+        <div className="container mx-auto px-24 flex justify-between">
+          <Main data={data} />
+          <Tag tags={tags} />
+        </div>
       </>
     );
   }
