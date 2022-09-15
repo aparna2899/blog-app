@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
+import Hero from './components/Hero';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Header />
+        <Hero />
       </BrowserRouter>
     );
   }
