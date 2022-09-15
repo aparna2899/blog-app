@@ -1,11 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Header from './components/Header';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    return <h1>Blog</h1>;
+    return (
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
   }
 }
 
