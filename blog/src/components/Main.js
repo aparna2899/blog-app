@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Main(props) {
+function Home(props) {
   let { data } = props;
   return (
     <div className="w-2/3 py-8">
@@ -40,7 +40,10 @@ function Main(props) {
               </Link>
               <div>
                 {article.tagList.map((tag) => (
-                  <Link className="mx-1 text-grey border rounded-xl py-1 px-3 text-sm">
+                  <Link
+                    key={tag}
+                    className="mx-1 text-grey border rounded-xl py-1 px-3 text-sm"
+                  >
                     {tag}
                   </Link>
                 ))}
@@ -53,4 +56,4 @@ function Main(props) {
   );
 }
 
-export default Main;
+export default Home;

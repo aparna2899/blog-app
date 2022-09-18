@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from './Main';
-import Tag from './Tag';
+import Main from '../components/Main';
+import Tag from '../components/Tag';
 
 class Hero extends React.Component {
   constructor(props) {
