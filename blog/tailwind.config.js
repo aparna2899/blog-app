@@ -2,9 +2,10 @@
 module.exports = {
   content: [
     './src/components/Header.js',
-    './src/components/Hero.js',
+    './src/pages/Home.js',
     './src/components/Main.js',
     './src/components/Tag.js',
+    './src/pages/Login.js',
   ],
   theme: {
     extend: {

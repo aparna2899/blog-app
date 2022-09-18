@@ -1,7 +1,9 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +13,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Header />
-        <Hero />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       </BrowserRouter>
     );
   }
