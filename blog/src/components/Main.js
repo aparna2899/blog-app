@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 
 function Home(props) {
-  let { data } = props;
   return (
     <div className="w-2/3 py-8">
       <p className="mb-2 ml-4 text-green">Global Feed</p>
       <hr />
       <ul>
-        {data.map((article) => (
+        {props.articles.map((article) => (
           <li key={article.slug} className="py-8 border-b">
             <div className="flex">
               <div className="w-14 h-14">
@@ -33,7 +32,7 @@ function Home(props) {
             </p>
             <div className="flex justify-between">
               <Link
-                to="/articles/:slug"
+                to={`/articles/ ${article.slug}`}
                 className="text-grey font-light text-sm"
               >
                 Read more...
