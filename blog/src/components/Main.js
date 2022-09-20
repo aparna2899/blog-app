@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 
-function Home(props) {
+function Main(props) {
   return (
     <div className="w-2/3 py-8">
-      <p className="mb-2 ml-4 text-green">Global Feed</p>
+      <nav className="mb-2 ml-4">
+        <Link className="text-green" onClick={() => props.selectTag('')}>
+          Global Feed
+        </Link>
+        <Link className="text-green ml-12">{props.selectedTag}</Link>
+      </nav>
+
       <hr />
       <ul>
         {props.articles.map((article) => (
@@ -55,4 +61,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default Main;
