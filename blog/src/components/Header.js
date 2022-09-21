@@ -16,6 +16,9 @@ function Header() {
         <Link to="/register" className="mx-3">
           Sign up
         </Link>
+        <Link to="/new" className="mx-3">
+          New Article
+        </Link>
       </nav>
     </div>
   );

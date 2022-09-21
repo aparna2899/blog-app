@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 function Main(props) {
   return (
     <div className="w-2/3 py-8">
-      <nav className="mb-2 ml-4">
-        <Link className="text-green" onClick={() => props.selectTag('')}>
+      <div className="mb-2 ml-4">
+        <span className="text-green" onClick={() => props.selectTag('')}>
           Global Feed
-        </Link>
-        <Link className="text-green ml-12">{props.selectedTag}</Link>
-      </nav>
+        </span>
+        <span className="text-green ml-12">{props.selectedTag}</span>
+      </div>
 
       <hr />
       <ul>
@@ -45,12 +45,12 @@ function Main(props) {
               </Link>
               <div>
                 {article.tagList.map((tag) => (
-                  <Link
+                  <span
                     key={tag}
                     className="mx-1 text-grey border rounded-xl py-1 px-3 text-sm"
                   >
                     {tag}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </div>
