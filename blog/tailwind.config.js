@@ -7,6 +7,7 @@ module.exports = {
     './src/components/Tag.js',
     './src/pages/Login.js',
     './src/pages/Article.js',
+    './src/pages/CreateArticle.js',
   ],
   theme: {
     extend: {

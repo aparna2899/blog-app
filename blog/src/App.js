@@ -1,26 +1,25 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Article from './pages/Article';
+import CreateArticle from './pages/CreateArticle';
+import ProtectedRoutes from './pages/ProtectedRoutes';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/articles/:slug" element={<Article />} />
-        </Routes>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/articles/:slug" component={Article} />
+          <ProtectedRoutes path="/new" component={CreateArticle} />
+        </Switch>
       </BrowserRouter>
     );
   }
