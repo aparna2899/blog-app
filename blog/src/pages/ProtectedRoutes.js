@@ -11,7 +11,6 @@ export default function ProtectedRoutes({ component: Component, ...rest }) {
         const token = cookies.get('TOKEN');
 
         if (token) {
-          console.log(token);
           return <Component {...props} />;
         } else {
           return (
