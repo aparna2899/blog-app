@@ -10,9 +10,13 @@ function UserProfile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resUser = await axios.get(
-          `https://mighty-oasis-08080.herokuapp.com/api/profiles/${user.username}`
-        );
+        const resUser = await axios({
+          method: 'GET',
+          url: `https://mighty-oasis-08080.herokuapp.com/api/user`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const resArticle = await axios({
           method: 'GET',
           url: `https://mighty-oasis-08080.herokuapp.com/api/articles?author=${user.username}`,
@@ -20,7 +24,7 @@ function UserProfile() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setDetails(resUser.data.profile);
+        setDetails(resUser.data.user);
         setArticle(resArticle.data.articles);
       } catch (error) {
         console.log(error);
@@ -31,11 +35,11 @@ function UserProfile() {
   return (
     <>
       <div className="bg-gray-200 text-center py-7">
-        <div className="w-13 h-13">
+        <div className="w-28 h-28  mx-auto ">
           <img
             src={userDetails.image}
             alt=""
-            className="rounded-full mx-auto"
+            className="rounded-full w-full h-full object-cover"
           />
         </div>
 
@@ -62,7 +66,7 @@ function UserProfile() {
                   <img
                     src={article.author.image}
                     alt=""
-                    className="w-full rounded-full"
+                    className="w-full h-full object-cover rounded-full"
                   />
                 </div>
                 <div className="ml-2">
