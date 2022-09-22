@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -28,9 +26,8 @@ function Login() {
         });
 
         setLogin(true);
-        cookies.set('TOKEN', res.data.user.token, {
-          path: '/',
-        });
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+
         window.location.href = '/new';
       } catch (error) {
         console.log(error.response.data);

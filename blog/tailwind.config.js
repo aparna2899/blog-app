@@ -8,6 +8,7 @@ module.exports = {
     './src/pages/Login.js',
     './src/pages/Article.js',
     './src/pages/CreateArticle.js',
+    './src/pages/UserProfile.js',
   ],
   theme: {
     extend: {

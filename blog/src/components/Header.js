@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+// let user = JSON.parse(localStorage.getItem('user'));
 
 function Header() {
   return (
@@ -18,6 +19,9 @@ function Header() {
         </Link>
         <Link to="/new" className="mx-3">
           New Article
+        </Link>
+        <Link to="/profile" className="mx-3">
+          Profile
         </Link>
       </nav>
     </div>

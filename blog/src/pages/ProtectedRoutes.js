@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+let user = JSON.parse(localStorage.getItem('user'));
+const token = user.token;
 
 export default function ProtectedRoutes({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
       render={(props) => {
-        const token = cookies.get('TOKEN');
-
         if (token) {
           return <Component {...props} />;
         } else {
