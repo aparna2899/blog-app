@@ -9,6 +9,7 @@ module.exports = {
     './src/pages/Article.js',
     './src/pages/CreateArticle.js',
     './src/pages/UserProfile.js',
+    './src/pages/EditProfile.js',
   ],
   theme: {
     extend: {

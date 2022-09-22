@@ -28,7 +28,7 @@ function Article(props) {
             <img
               src={article?.author?.image}
               alt=""
-              className="w-full rounded-full"
+              className="rounded-full w-full h-full object-cover"
             />
           </div>
           <div className="ml-3">
