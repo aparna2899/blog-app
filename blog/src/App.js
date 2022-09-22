@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Article from './pages/Article';
 import CreateArticle from './pages/CreateArticle';
+import UserProfile from './pages/UserProfile';
 import ProtectedRoutes from './pages/ProtectedRoutes';
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/articles/:slug" component={Article} />
           <ProtectedRoutes path="/new" component={CreateArticle} />
+          <ProtectedRoutes path="/profile" component={UserProfile} />
         </Switch>
       </BrowserRouter>
     );

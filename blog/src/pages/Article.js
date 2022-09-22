@@ -48,7 +48,7 @@ function Article(props) {
             key={tag}
             className="border m-1 inline-block py-1 px-3 rounded-2xl text-sm text-grey"
           >
-            <Link> {tag}</Link>
+            <span> {tag}</span>
           </li>
         ))}
       </ul>

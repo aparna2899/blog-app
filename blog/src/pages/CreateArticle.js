@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-const token = cookies.get('TOKEN');
+let userDetails = JSON.parse(localStorage.getItem('user'));
+const token = userDetails.token;
 
 function CreateArticle() {
   const [title, setTitle] = useState('');
