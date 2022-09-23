@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-let userDetails = JSON.parse(localStorage.getItem('user'));
-const token = userDetails.token;
+let user = JSON.parse(localStorage.getItem('user'));
 
 function EditArticle(props) {
   const [title, setTitle] = useState(props.location.state.title);
@@ -20,7 +19,7 @@ function EditArticle(props) {
           url: `https://mighty-oasis-08080.herokuapp.com/api/articles/${props.location.state.slug}`,
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
           },
           data: JSON.stringify({
             article: {

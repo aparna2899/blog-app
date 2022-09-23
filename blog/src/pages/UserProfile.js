@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 let user = JSON.parse(localStorage.getItem('user'));
-const token = user.token;
 
 function UserProfile() {
   const [userDetails, setDetails] = useState({});
   const [articles, setArticle] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,14 +14,14 @@ function UserProfile() {
           method: 'GET',
           url: `https://mighty-oasis-08080.herokuapp.com/api/user`,
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         });
         const resArticle = await axios({
           method: 'GET',
           url: `https://mighty-oasis-08080.herokuapp.com/api/articles?author=${user.username}`,
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         });
         setDetails(resUser.data.user);
@@ -32,6 +32,11 @@ function UserProfile() {
     };
     fetchData();
   }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = `/login`;
+  };
   return (
     <>
       <div className="bg-gray-200 text-center py-7">
@@ -47,10 +52,17 @@ function UserProfile() {
         <div className="px-44 text-right">
           <Link
             to="/editprofile"
-            className="border border-gray-400 px-2 py-1 rounded text-gray-500 mr-6 cursor-pointer"
+            className="border border-gray-400 px-2 py-1 rounded text-gray-500 mr-6 cursor-pointer hover:border-blue-400 hover:text-blue-500"
           >
             Edit Profile
           </Link>
+          <div
+            to="/editprofile"
+            className="border border-gray-400 px-2 py-1 rounded text-gray-500 mr-6 cursor-pointer inline hover:border-blue-400 hover:text-blue-500"
+            onClick={handleLogout}
+          >
+            Logout
+          </div>
         </div>
       </div>
       <div className="px-44">

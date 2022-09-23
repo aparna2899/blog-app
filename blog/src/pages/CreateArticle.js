@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-let userDetails = JSON.parse(localStorage.getItem('user'));
-const token = userDetails.token;
+let user = JSON.parse(localStorage.getItem('user'));
 
 function CreateArticle() {
   const [title, setTitle] = useState('');
@@ -19,7 +18,7 @@ function CreateArticle() {
           url: `https://mighty-oasis-08080.herokuapp.com/api/articles`,
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
           },
           data: JSON.stringify({
             article: {

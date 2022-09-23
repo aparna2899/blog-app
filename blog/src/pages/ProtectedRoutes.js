@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-let user = JSON.parse(localStorage.getItem('user'));
-const token = user.token;
 
 export default function ProtectedRoutes({ component: Component, ...rest }) {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    } else window.location.href = `/login`;
+  }, []);
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (token) {
+        if (user.token) {
           return <Component {...props} />;
-        } else {
-          return (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: {
-                  from: props.location,
-                },
-              }}
-            />
-          );
         }
+        // else {
+        //   return (
+        //     <Redirect
+        //       to={{
+        //         pathname: '/login',
+        //         state: {
+        //           from: props.location,
+        //         },
+        //       }}
+        //     />
+        //   );
+        // }
       }}
     />
   );

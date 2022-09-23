@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-let userDetails = JSON.parse(localStorage.getItem('user'));
-const token = userDetails.token;
+let user = JSON.parse(localStorage.getItem('user'));
 
 function Article() {
   const { slug } = useParams();
@@ -25,7 +24,7 @@ function Article() {
         method: 'DELETE',
         url: `https://mighty-oasis-08080.herokuapp.com/api/articles/${article.slug}`,
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       });
     } catch (error) {
@@ -57,7 +56,7 @@ function Article() {
             </span>
           </div>
         </div>
-        {article?.author?.username === userDetails.username ? (
+        {article?.author?.username === user.username ? (
           <div className="mt-8">
             <Link
               to={{

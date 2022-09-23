@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+let user = JSON.parse(localStorage.getItem('user'));
 
 function Header() {
   return (
@@ -10,17 +11,17 @@ function Header() {
         <Link to="/" className="mx-3">
           Home
         </Link>
-        <Link to="/login" className="mx-3">
-          Sign in
+        <Link to="/login" className={!user ? 'mx-3' : 'mx-0'}>
+          {!user ? 'Sign in' : ''}
         </Link>
-        <Link to="/register" className="mx-3">
-          Sign up
+        <Link to="/register" className={!user ? 'mx-3' : 'mx-0'}>
+          {!user ? 'Sign up' : ''}
         </Link>
         <Link to="/new" className="mx-3">
-          New Article
+          {user ? 'New Article' : ''}
         </Link>
         <Link to="/profile" className="mx-3">
-          Profile
+          {user ? 'Profile' : ''}
         </Link>
       </nav>
     </div>

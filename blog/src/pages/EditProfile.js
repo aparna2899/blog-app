@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-let userDetails = JSON.parse(localStorage.getItem('user'));
-const token = userDetails.token;
+let user = JSON.parse(localStorage.getItem('user'));
 
 function EditProfile() {
-  const [image, setUrl] = useState(userDetails.image);
-  const [username, setUsername] = useState(userDetails.username);
-  const [bio, setBio] = useState(userDetails.bio);
-  const [email, setEmail] = useState(userDetails.email);
-  const [password, setPassword] = useState(userDetails.password);
+  const [image, setUrl] = useState(user.image);
+  const [username, setUsername] = useState(user.username);
+  const [bio, setBio] = useState(user.bio);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState(user.password);
   const [updatedUser, setUpdatedUser] = useState({});
 
   const handleSubmit = (event) => {
@@ -20,7 +19,7 @@ function EditProfile() {
           url: `https://mighty-oasis-08080.herokuapp.com/api/user`,
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
           },
           data: JSON.stringify({
             user: {
