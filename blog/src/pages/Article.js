@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+let userDetails = JSON.parse(localStorage.getItem('user'));
+const token = userDetails.token;
 
-function Article(props) {
+function Article() {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
 
@@ -16,6 +18,21 @@ function Article(props) {
     };
     getArticle();
   }, [slug]);
+
+  const handleDelete = async () => {
+    try {
+      await axios({
+        method: 'DELETE',
+        url: `https://mighty-oasis-08080.herokuapp.com/api/articles/${article.slug}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.href = `/profile`;
+  };
 
   return (
     <>
@@ -40,6 +57,28 @@ function Article(props) {
             </span>
           </div>
         </div>
+        {article?.author?.username === userDetails.username ? (
+          <div className="mt-8">
+            <Link
+              to={{
+                pathname: '/editarticle',
+                state: article,
+              }}
+              className="border border-gray-400 hover:border-blue-400 px-2 py-1 rounded text-gray-500 hover:text-blue-500 mr-6"
+            >
+              Edit Article
+            </Link>
+            <Link
+              to="/deletearticle"
+              className="border border-gray-400 hover:border-red-400 px-2 py-1 rounded text-gray-500 hover:text-red-500"
+              onClick={handleDelete}
+            >
+              Delete Article
+            </Link>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
       <p className="px-44 mt-10 mb-5 text-lg font-Roboto">{article.body}</p>
       <ul className="px-44">

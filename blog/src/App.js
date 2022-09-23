@@ -8,6 +8,7 @@ import Article from './pages/Article';
 import CreateArticle from './pages/CreateArticle';
 import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
+import EditArticle from './pages/EditArticle';
 import ProtectedRoutes from './pages/ProtectedRoutes';
 
 class App extends React.Component {
@@ -19,10 +20,11 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/articles/:slug" component={Article} />
+          <ProtectedRoutes path="/articles/:slug" component={Article} />
           <ProtectedRoutes path="/new" component={CreateArticle} />
           <ProtectedRoutes path="/profile" component={UserProfile} />
           <ProtectedRoutes path="/editprofile" component={EditProfile} />
+          <ProtectedRoutes path="/editarticle" component={EditArticle} />
         </Switch>
       </BrowserRouter>
     );

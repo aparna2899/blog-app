@@ -47,7 +47,7 @@ function UserProfile() {
         <div className="px-44 text-right">
           <Link
             to="/editprofile"
-            className="border border-gray-400 px-2 py-1 rounded text-gray-500"
+            className="border border-gray-400 px-2 py-1 rounded text-gray-500 mr-6 cursor-pointer"
           >
             Edit Profile
           </Link>
@@ -56,7 +56,6 @@ function UserProfile() {
       <div className="px-44">
         <div className="mt-12 pb-2 border-b ">
           <span className="text-green ml-4">My Articles</span>
-          <span className="text-green ml-12">Favourite Articles</span>
         </div>
         <ul>
           {articles.map((article) => (
