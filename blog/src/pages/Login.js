@@ -28,7 +28,7 @@ function Login() {
         setLogin(true);
         localStorage.setItem('user', JSON.stringify(res.data.user));
 
-        window.location.href = '/new';
+        window.location.href = '/';
       } catch (error) {
         console.log(error.response.data);
       }
